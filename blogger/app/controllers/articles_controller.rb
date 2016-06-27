@@ -6,6 +6,13 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    # don't use @comment = @article.comments.new as this adds an empty comment
+    # to the in-memory collection of Article, which puts empty comment at the
+    # end of each article
+    # what we want is to just create a blank Comment object (without saving it anywhere)
+    # so Rails can figure out what fields a comment has
+    @comment.article_id = @article.id
   end
 
   def new
