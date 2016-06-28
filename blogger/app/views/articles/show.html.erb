@@ -5,11 +5,17 @@
     <%= link_to tag.name, tag_path(tag) %>
   <% end %>
 </p>
+<% if @article.image.exists? %>
+  <p><%= image_tag @article.image.url(:medium) %></p>
+<% end %>
 <p><%= @article.body %></p>
 
 <h3>Comments (<%= @article.comments.size %>)</h3>
 <%= render partial: 'comment', collection: @article.comments %>
 
+<% if @article.image.exists? %>
+  <p><%= image_tag @article.image.url(:thumb) %></p>
+<% end %>
 <%= render partial: 'comments/form' %>
 
 <br/>
