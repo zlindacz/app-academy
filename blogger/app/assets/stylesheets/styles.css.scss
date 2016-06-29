@@ -21,6 +21,35 @@ a {
   overflow: hidden;
 }
 
+.navbar {
+  display: block;
+  color: #000;
+  padding: 8px 0 8px 16px;
+  color: #3399ff;
+  text-decoration: none;
+}
+
+.navbar:hover {
+  background-color: #bf00ff;
+  color: white;
+  text-decoration: none;
+}
+
+.inline {
+  display: inline-block;
+  vertical-align: top;
+  margin: 5px;
+  padding-top: 15px;
+}
+
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 85px;
+  background-color: #001a66;
+}
+
 #container {
   width: 75%;
   margin: 0 auto;
