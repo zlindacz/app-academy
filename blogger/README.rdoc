@@ -1,28 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This exercise follows the open source Blogger 2 tutorial provided by JumpstartLab.
 
-Things you may want to cover:
+Rails basics learned:
+1. Models, views, and controllers (MVC)
+2. Data structures and relationships
+3. Routing
+4. Migrations
+5. Views with forms, partials, and helpers
+6. RESTful design
+7. Adding gems for extra features
+8. Authentication
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+http://tutorials.jumpstartlab.com/projects/blogger.html#blogger-2
