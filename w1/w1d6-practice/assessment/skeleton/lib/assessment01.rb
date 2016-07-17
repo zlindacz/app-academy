@@ -52,11 +52,13 @@ end
 # is 1!, the 3rd factorial is 2!, etc.
 
 def factorials_rec(num)
-  return [] if num < 0
-  return [1] if num == 0
-
+  return [] if num <= 0
+  return [1] if num == 1
+  # byebug
   previous_factorial = factorials_rec(num-1)
-  previous_factorial + factorials_rec(previous_factorials)
+  next_factorial = (num-1) * previous_factorial.last
+
+  previous_factorial << next_factorial
 end
 
 class Array
@@ -70,7 +72,7 @@ class Array
     dup_hash = Hash.new { |h,k| h[k] = [] }
 
     each_with_index do |num, idx|
-      dup_hash[num] << idx
+      dup_hash[num] << idx if self.count(num) > 1
     end
     dup_hash
   end
@@ -95,21 +97,33 @@ class String
   end
 end
 
-# class Array
-#
+class Array
+
 #   # Write an Array#merge_sort method; it should not modify the original array.
-#
-#   def merge_sort(&prc)
-#
-#   end
-#
-#   private
-#   def self.merge(left, right, &prc)
-#     prc ||= Proc.new { left <=> right }
-#     return right if left.empty?
-#     return left if right.empty?
-#     if prc == -1
-#       left
-#
-#   end
-# end
+
+  def merge_sort(&prc)
+    return self if length <= 1
+    prc ||= Proc.new { |a,b| a <=> b }
+
+    half_idx = self.length/2
+
+    left = self.take(half_idx)
+    right = self.drop(half_idx)
+
+    Array.merge(left.merge_sort(&prc), right.merge_sort(&prc), &prc)
+  end
+
+  private
+  def self.merge(left, right, &prc)
+    results = []
+
+    until left.empty? || right.empty?
+      if prc.call(left.first, right.first) == -1
+        results << left.shift
+      else
+        results << right.shift
+      end
+    end
+    results = results + left + right
+  end
+end
