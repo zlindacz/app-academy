@@ -1,5 +1,5 @@
 require 'rspec'
-require 'assessment01'
+require 'assessment01_2'
 
 describe 'Array#my_inject' do
 
