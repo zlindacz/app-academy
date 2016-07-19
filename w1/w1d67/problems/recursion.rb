@@ -1,4 +1,5 @@
 # Write a recursive method, range, that takes a start and an end and returns an array of all numbers between. If end < start, you can return the empty array.
+# inclusive
 def range(min, max)
   return [] if min > max
   return [min] if max == min
@@ -77,10 +78,10 @@ def fibs_iter(n)
   fibs
 end
 
-# p fibs_iter(0)
-# p fibs_iter(3)
-# p fibs_iter(5)
-# p fibs_iter(6)
+p fibs_iter(0)
+p fibs_iter(3)
+p fibs_iter(5)
+p fibs_iter(6)
 
 
 def fibs_rec(n)
@@ -91,6 +92,12 @@ def fibs_rec(n)
   next_fib = prev_fib[-1] + prev_fib[-2]
 
   prev_fib << next_fib
+end
+
+def fib_rec(n)
+  [0,1].take(n) if n <= 2
+  last_fib = fib_rec(n-1)
+  last_fib << (last_fib[-1] + last_fib[-2])
 end
 
 # p fibs_rec(0)
@@ -119,37 +126,23 @@ end
 #
 
 
-# def bsearch(nums, target)
-#
-#   return nil if nums.empty?
-#   half_idx = nums.length/2
-#   left_half = nums.take(half_idx)
-#   right_half = nums.drop(half_idx+1)
-#
-#   if target < nums[half_idx]
-#     bsearch(left_half, target)
-#   elsif target > nums[half_idx]
-#     sub_answer = bsearch(right_half, target)
-#     sub_answer.nil? ? nil : (half_idx+1) + sub_answer
-#   else
-#     half_idx
-#   end
-# end
+def bsearch(nums, target)
 
-def bsearch(arr, target)
-  if arr.length == 1
-    arr[0] == target ? 0 : "Not found!"
-  elsif target >= arr[arr.length/2]
-    value = bsearch(arr[arr.length/2..-1], target)
-    if value == "Not found!"
-      return value
-    else
-      arr[0...(arr.length/2)].size + value
-    end
+  return nil if nums.empty?
+  half_idx = nums.length/2
+  left_half = nums.take(half_idx)
+  right_half = nums.drop(half_idx+1)
+
+  if target < nums[half_idx]
+    bsearch(left_half, target)
+  elsif target > nums[half_idx]
+    sub_answer = bsearch(right_half, target)
+    sub_answer.nil? ? nil : (half_idx+1) + sub_answer
   else
-    bsearch(arr[0...arr.length/2], target)
+    half_idx
   end
 end
+
 
 # p bsearch([1, 2, 3], 1) # => 0
 # p bsearch([2, 3, 4, 5], 3) # => 1
