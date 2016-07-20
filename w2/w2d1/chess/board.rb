@@ -72,7 +72,7 @@ class Board
     end
   end
 
-  def move(start_pos, end_pos)
+  def move(start_pos, end_pos, color)
     if self[*start_pos].class == NullPiece
       raise PieceError.new("Nothing at this position.")
     elsif !self[*start_pos].valid_move?(start_pos, end_pos)
@@ -90,7 +90,11 @@ class Board
     pos.all? { |x| x.between?(0, 7) }
   end
 
+  protected
 
+  def find_king(color)
+
+  end
 
 end
 

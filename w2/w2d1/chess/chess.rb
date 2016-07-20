@@ -7,6 +7,7 @@ class Chess
   def initialize
     @board = Board.new
     @player = Player.new(@board)
+    #@current_player = @player
   end
 
   def run
@@ -16,6 +17,16 @@ class Chess
       p "got here"# @board.move(pos)
     end
     puts "Hooray, the board is filled!"
+  end
+
+  private
+
+  def notify_players()
+
+  end
+
+  def swap_turn!()
+
   end
 end
 
