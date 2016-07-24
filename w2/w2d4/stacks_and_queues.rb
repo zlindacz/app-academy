@@ -82,3 +82,5 @@ class StackQueue
     @stack1.empty?
   end
 end
+
+# need to do MaxStack, MinMaxStack, MinMaxStackQueue
