@@ -13,20 +13,20 @@ class HashSet
       if @count == num_buckets
         resize!
       end
-      self[key] << key
+      self[key.hash] << key
       @count += 1
     end
   end
 
   def remove(key)
     if self.include?(key)
-      self[key].delete(key)
+      self[key.hash].delete(key)
       @count -= 1
     end
   end
 
   def include?(key)
-    self[key].include?(key)
+    self[key.hash].include?(key)
   end
 
   private

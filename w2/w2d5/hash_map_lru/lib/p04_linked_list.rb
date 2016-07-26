@@ -1,5 +1,3 @@
-require 'byebug'
-
 class Link
   attr_accessor :key, :val, :next, :prev
 
@@ -16,6 +14,8 @@ class Link
 end
 
 class LinkedList
+  include Enumerable
+
   attr_accessor :list
 
   def initialize
@@ -24,8 +24,8 @@ class LinkedList
     @sentinel.next = @sentinel
   end
 
-  def [](key)
-    @list.each { |link| return link if link.key == key }
+  def [](i)
+    each_with_index { |link, j| return link if i == j }
     nil
   end
 
@@ -42,13 +42,10 @@ class LinkedList
   end
 
   def get(key)
-    search_link = first
-
-    until search_link == @sentinel
-      return search_link.val if search_link.key == key
-      search_link = search_link.next
+    each do |link|
+      break if link == @sentinel
+      return link.val if link.key == key
     end
-
     nil
   end
 
@@ -59,47 +56,42 @@ class LinkedList
 
   def insert(key, val)
     new_link = Link.new(key, val)
-    new_link.next = @sentinel
 
     prev_link = @sentinel.prev
-    prev_link.next = new_link
-
-    @sentinel.prev = new_link
+    new_link.next = @sentinel
     new_link.prev = prev_link
+    prev_link.next = new_link
+    @sentinel.prev = new_link
+
+    new_link
   end
 
   def remove(key)
     return nil unless get(key)
-    link_to_delete = first
 
-    until link_to_delete == @sentinel
+    each do |link|
+      if link.key == key
+        prev_link = link.prev
+        next_link = link.next
 
-      if link_to_delete.key == key
-        prev_link = link_to_delete.prev
-        next_link = link_to_delete.next
-
-        prev_link.next = next_link
-        next_link.prev = prev_link
-        link_to_delete.val = nil
-        break
+        link.prev.next = next_link
+        link.next.prev = prev_link
+        link.prev, link.next = nil, nil
+        return link.val
       end
-      link_to_delete = link_to_delete.next
     end
   end
 
   def each
-    values = []
-    current_link = first
-    until current_link == @sentinel
-      byebug
-      values << current_link.val
-      current_link = current_link.next
+    link = first
+    until link == @sentinel
+      yield link
+      link = link.next
     end
-    values
   end
 
   # uncomment when you have `each` working and `Enumerable` included
-  # def to_s
-  #   inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
-  # end
+  def to_s
+    inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
+  end
 end
