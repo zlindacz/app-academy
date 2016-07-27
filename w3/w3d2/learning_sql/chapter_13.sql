@@ -1,0 +1,14 @@
+-- 13.1
+-- What is a database index?
+-- Why would you want to create an index?
+-- What index is automatically created when you create a table?
+-- How do you enforce uniqueness of values in a particular column?
+-- Why don't you need to build unique indices on your primary-key column(s) ?
+-- Why would you use a multi-column index?
+-- Understand broadly the structure and balancing nature of a balanced-tree or B-tree.
+-- Extra-Credit: 13.1.2.2
+-- Play around with the explain statement a bit to see how your queries get executed
+-- Why not index every column?
+-- 13.2
+-- What is a constraint?
+-- What is a foreign-key constraint?

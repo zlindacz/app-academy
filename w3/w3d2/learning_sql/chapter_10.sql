@@ -1,0 +1,10 @@
+-- 10.1
+-- What is an outer join?
+-- What is a left outer join?
+-- What is the difference between a left outer join and a right outer join?
+-- Know how to outer join 3 or more tables.
+-- Know how to perform self outer joins.
+-- 10.2
+-- What is a cartesian product (or cross join)?
+-- 10.3
+-- What is a natural join and why should it be avoided?
