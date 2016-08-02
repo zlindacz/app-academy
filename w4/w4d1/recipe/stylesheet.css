@@ -1,0 +1,34 @@
+body {
+  background: #ffff66;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+.ingredients_list {
+  background: #ffe0b3;
+  padding: 3px;
+  list-style: square inside;
+}
+
+ol {
+  backgroud: #ff9933;
+  padding: 3px;
+  list-style-type: disc;
+}
+
+header>img {
+  height: 100px;
+  width: 100px;
+}
+
+li a.link {
+  text-decoration: none;
+  color: inherit;
+}
