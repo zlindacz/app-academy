@@ -1,0 +1,45 @@
+<% if @cat.persisted? %>
+  <form action="<%= cat_url(@cat) %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+<% else %>
+
+  <form action="<%= cats_url %>" method="post">
+<% end %>
+<label>
+  Name:
+  <input type="text" name="cat[name]" value=<%= @cat.name %> >
+</label>
+
+Sex:
+
+F<input type="radio" name="cat[sex]" value="F" <%= "checked" if @cat.sex == 'F' %> >
+M<input type="radio" name="cat[sex]" value="M" <%= "checked" if @cat.sex == 'M' %> >
+
+<label>
+  Color:
+  <select name="cat[color]">
+    <option value=<%= @cat.color %> selected><%= @cat.color %></option>
+    <option value="white">White</option>
+    <option value="black">Black</option>
+    <option value="brown">Brown</option>
+    <option value="orange">Orange</option>
+    <option value="gray">Gray</option>
+  </select>
+</label>
+
+<label>
+  Birth Date:
+  <input type="date" name="cat[birth_date]" value=<%= @cat.birth_date %>>
+</label>
+
+<label>
+  Description:
+  <textarea name="cat[description]"><%= @cat.description %></textarea>
+</label>
+
+<% if @cat.persisted? %>
+  <input type="submit" value="Update Cat!">
+<% else %>
+  <input type="submit" value="New Cat!">
+<% end %>
+</form>

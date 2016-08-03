@@ -1,0 +1,13 @@
+<h1>Edit Cat!</h1>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+<%= render "form" %>
+
+<form action= <%= cat_url(@cat) %> method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Bye Bye!">
+</form>

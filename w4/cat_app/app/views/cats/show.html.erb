@@ -1,0 +1,46 @@
+<table border="1">
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td><%= @cat.name %></td>
+  </tr>
+  <tr>
+    <td>Age</td>
+    <td><%= @cat.age %></td>
+  </tr>
+  <tr>
+    <td>Sex</td>
+    <td><%= @cat.sex %></td>
+  </tr>
+  <tr>
+    <td>Color</td>
+    <td><%= @cat.color %></td>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td><%= @cat.description %></td>
+  </tr>
+</table>
+
+<table border="1">
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+
+  <% @cat.cat_rental_requests.sort {|x,y| x.start_date <=> y.start_date }.each do |request| %>
+    <tr>
+      <td><%= request.start_date %></td>
+      <td><%= request.end_date %></td>
+      <td><%= request.status %></td>
+      <% if request.pending? %>
+        <td><%= button_to "Approve", "/cat_rental_requests/#{request.id}/approve!", :method => :post %> <%= button_to "Deny", "/cat_rental_requests/#{request.id}/deny!", :method => :post%></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
