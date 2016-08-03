@@ -17,6 +17,6 @@ Contact.create!(name: "snehi", email: "snehi@email.co.uk", user_id: 2)
 ContactShare.create!(contact_id: 3, user_id: 2)
 ContactShare.create!(contact_id: 1, user_id: 3)
 
-Comment.create!(body: "I'm so hungry. Got any fries?", commentable_id: 2, commentable_type: 1)
-Comment.create!(body: "Lets go to McD's!") #add commentable id type
-Comment.create!(body: "Garlic fries!!!") #add commentable id type
+Comment.create!(body: "I'm so hungry. Got any fries?", commentable_id: 2, commentable_type: 'user_id')
+Comment.create!(body: "Lets go to McD's!", commentable_id: 1, commentable_type: 'contact_id')
+Comment.create!(body: "Garlic fries!!!", commentable_id: 3, commentable_type: 'user_id')

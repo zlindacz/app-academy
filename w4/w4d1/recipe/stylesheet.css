@@ -18,12 +18,12 @@ h2 {
 }
 
 ol {
-  backgroud: #ff9933;
+  background: #ff9933;
   padding: 3px;
   list-style-type: disc;
 }
 
-header>img {
+header > img {
   height: 100px;
   width: 100px;
 }

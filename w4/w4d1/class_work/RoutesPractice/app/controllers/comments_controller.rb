@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
   def index
-    if params.has_key?(:commentable)
-      @comment = Comment.where(commentable: params[:commentable_id])
+    if params.has_key?(:user_id)
+      @comments = Comment.all.where(user_id: params[:user_id])
+    elsif params.has_key?(:contact_id)
+      @comments = Comment.all.where(contact_id: params[:contact_id])
     else
-      @comment = Comment.all
+      @comments = Comment.all
     end
-    render json: @comment
+    render json: @comments
   end
 
   def show
@@ -49,7 +51,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params[:comment].permit(:body)
+    params[:commentable_type][:commentable_id][:comment].permit(:body)
   end
 
 end
