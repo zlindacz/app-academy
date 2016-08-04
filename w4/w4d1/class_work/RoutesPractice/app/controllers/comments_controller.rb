@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   def index
     if params.has_key?(:user_id)
-      @comments = Comment.all.where(user_id: params[:user_id])
+      @user = User.find_by_id(params[:user_id])
+      @comments = @user.comments
     elsif params.has_key?(:contact_id)
-      @comments = Comment.all.where(contact_id: params[:contact_id])
-    else
-      @comments = Comment.all
+      @contact = Contact.find_by_id(params[:contact_id])
+      @comments = @contact.comments
     end
     render json: @comments
   end
