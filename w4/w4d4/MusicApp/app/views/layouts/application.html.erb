@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if logged_in? %>
+  <p>Logged in as: <%= current_user.email %></p>
+  <p><%= button_to "Logout", session_url, method: :delete %></p>
+  <p><%= link_to "Back to All Bands", bands_url, method: :get %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

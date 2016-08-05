@@ -1,0 +1,13 @@
+<form action="<%= session_url %>" method="post">
+  <input name="authenticity_token"
+         type="hidden"
+         value="form_authenticity_token">
+
+  <label for="email">Email</label>
+  <input type="text" name="user[email]" value="<%= user.email if user %>" id="email">
+
+  <label for="password">Password</label>
+  <input type="password" name="user[password]" value="<%= user.password if user %>" id="password">
+
+  <input type="submit" value="Login">
+</form>

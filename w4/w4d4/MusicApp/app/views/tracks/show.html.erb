@@ -1,0 +1,19 @@
+<h1><%= @track.name %></h1>
+
+<p><%= @track.lyrics %></p>
+
+<h3>New Note</h3>
+
+<%#= render 'form' %>
+
+<h3>Notes</h3>
+
+<%#= render @track.notes %>
+
+<h5>Links</h5>
+
+<ul>
+  <li><%= link_to "Edit Track", edit_track_url, method: :get %></li>
+  <li><%= link_to "Delete Track", track_url(@track), method: :delete %></li>
+  <li><%= link_to "#{@track.album.album_name}", album_url(@track.album) %>
+</ul>
