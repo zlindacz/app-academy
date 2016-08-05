@@ -44,4 +44,10 @@ class TracksController < ApplicationController
       render :show
     end
   end
+
+  private
+
+  def track_params
+    params.require(:track).permit(:name, :track_type, :lyrics, :album_id)
+  end
 end

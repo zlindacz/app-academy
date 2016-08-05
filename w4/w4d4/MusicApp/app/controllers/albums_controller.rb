@@ -6,10 +6,12 @@ class AlbumsController < ApplicationController
   end
 
   def new
+    @band = Band.find_by(params[:band_id])
     @album = Album.new
   end
 
   def create
+    @band = Band.find_by(params[:band_id])
     @album = Album.new(album_params)
 
     if @album.save
@@ -43,5 +45,11 @@ class AlbumsController < ApplicationController
       flash.now[:errors] = @album.errors.full_messages
       render :show
     end
+  end
+
+  private
+
+  def album_params
+    params.require(:album).permit(:album_name, :recorded_type, :band_id)
   end
 end
