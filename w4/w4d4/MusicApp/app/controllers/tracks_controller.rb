@@ -13,11 +13,12 @@ class TracksController < ApplicationController
   def create
     @track = Track.new(track_params)
     @album = Album.find_by(id: params[:album_id])
-    
+
     if @track.save
       redirect_to track_url(@track)
     else
-      flash.now[:errors] = @track.errors.full_messages
+      flash.now[:errors] ||= []
+      flash.now[:errors] += @track.errors.full_messages
       render :new
     end
   end
@@ -28,11 +29,11 @@ class TracksController < ApplicationController
 
   def update
     @track = Track.find_by(id: params[:id])
-
-    if @track.save
+    if @track.update(track_params)
       redirect_to track_url(@track)
     else
-      flash.now[:errors] = @track.errors.full_messages
+      flash.now[:errors] ||= []
+      flash.now[:errors] += @track.errors.full_messages
       render :new
     end
   end
@@ -42,7 +43,8 @@ class TracksController < ApplicationController
     if @track.destroy
       redirect_to album_url(@track.album)
     else
-      flash.now[:errors] = @track.errors.full_messages
+      flash.now[:errors] ||= []
+      flash.now[:errors] += @track.errors.full_messages
       render :show
     end
   end

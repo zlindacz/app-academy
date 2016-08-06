@@ -9,11 +9,13 @@
 <body>
   <h1>Music App on Rails</h1>
 
-<% if flash.now[:errors] %>
-  <% flash.now[:errors].each do |error| %>
-    <%= error %>
+<ul>
+  <% if flash.now[:errors] %>
+    <% flash.now[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
   <% end %>
-<% end %>
+</ul>
 
 <% if logged_in? %>
   <p>Logged in as: <%= current_user.email %></p>
