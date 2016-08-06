@@ -6,13 +6,13 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @band = Band.find_by(params[:band_id])
     @album = Album.new
+    @band = Band.find_by(params[:band_id])
   end
 
   def create
-    @band = Band.find_by(params[:band_id])
     @album = Album.new(album_params)
+    @band = Band.find_by(params[:band_id])
 
     if @album.save
       redirect_to album_url(@album)

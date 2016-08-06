@@ -1,4 +1,9 @@
-<form action="<%= albums_url %>" method="post">
+<% action = (album.persisted? ? album_url(album) : albums_url) %>
+<% method = (album.persisted? ? "patch" : "post") %>
+<% message = (album.persisted? ? "Edit Album" : "Create Album") %>
+
+<form action="<%= action %>" method="post">
+  <input name="_method" type="hidden" value="<%= method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <p>
@@ -13,18 +18,18 @@
       Band:
       <select name="album[band_id]" id="band_names">
         <% Band.all.each do |band| %>
-          <option value="album[band_id]"><%= band.name %></option>
+          <option value="<%= band.id %>"><%= band.name %></option>
         <% end %>
       </select>
     </label>
   </p>
 
   <p>
-    Live <input type="radio" name="album[recorded_type]" value="live">
-    Studio <input type="radio" name="album[recorded_type]" value="studio">
+    Live <input type="radio" name="album[recorded_type]" value="Live">
+    Studio <input type="radio" name="album[recorded_type]" value="Studio">
   </p>
 
   <p>
-    <input type="submit" value="Create Album!">
+    <input type="submit" value="<%= message %>">
   </p>
 </form>

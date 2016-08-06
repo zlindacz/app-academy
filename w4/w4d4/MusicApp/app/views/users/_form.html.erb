@@ -1,6 +1,6 @@
 <% action_url = user.persisted? ? user_url(user) : users_url %>
 <% method = user.persisted? ? "patch" : "post" %>
-<% message = user.persisted? ? "Edit" : "Create" %>
+<% message = user.persisted? ? "Edit User" : "Create User" %>
 
 <form action="<%= action_url %>" method="post">
   <input name="_method"

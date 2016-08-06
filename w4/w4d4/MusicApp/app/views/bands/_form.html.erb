@@ -1,10 +1,15 @@
-<form action="<%= bands_url %>" method="post">
+<% action = (band.persisted? ? band_url(band) : bands_url)%>
+<% method = (band.persisted? ? "patch" : "post")%>
+<% message = (band.persisted? ? "Edit Band" : "Create Band")%>
+
+<form action="<%= action %>" method="post">
+  <input name="_method" type="hidden" value="<%= method %>">
   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-  <label for="new_band">
+  <label for="band_name">
     Name:
-    <input type="text" name="band[name]" id="new_band">
+    <input type="text" name="band[name]" id="band_name">
   </label>
 
-  <input type="submit" value="Submit">
+  <input type="submit" value="<%= message %>">
 </form>

@@ -13,7 +13,7 @@
 <h5>Links</h5>
 
 <ul>
-  <li><%= link_to "Edit Track", edit_track_url, method: :get %></li>
+  <li><%= link_to "Edit Track", edit_track_url(@track), method: :get %></li>
   <li><%= link_to "Delete Track", track_url(@track), method: :delete %></li>
-  <li><%= link_to "#{@track.album.album_name}", album_url(@track.album) %>
+  <li><%= link_to @track.album.album_name, album_url(@track.album) %></li>
 </ul>
