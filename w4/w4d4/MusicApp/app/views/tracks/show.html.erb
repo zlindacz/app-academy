@@ -4,11 +4,11 @@
 
 <h3>New Note</h3>
 
-<%#= render 'form' %>
+<%= render '/notes/form', user: current_user, track: @track %>
 
 <h3>Notes</h3>
 
-<%#= render @track.notes %>
+<%= render '/notes/note', track: @track %>
 
 <h5>Links</h5>
 

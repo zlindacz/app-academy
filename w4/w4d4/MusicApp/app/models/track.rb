@@ -5,4 +5,6 @@ class Track < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :album_id,
     class_name: :Album
+
+  has_many :notes
 end

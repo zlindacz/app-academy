@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
 
   resources :tracks, except: :index
+  resources :notes, only: :create
 end

@@ -1,0 +1,11 @@
+Content
+<form action="<%= notes_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <textarea name="note[body]" cols="30" rows="10">
+    <% track.notes.last.body if track.notes.last %>
+  </textarea>
+
+  <input type="hidden" name="note[user_id]" value="user.id">
+  <input type="hidden" name="note[track_id]" value="track.id">
+  <input type="submit" value="Submit">
+</form>
