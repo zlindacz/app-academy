@@ -1,6 +1,7 @@
 require 'rack'
 require_relative '../lib/controller_base.rb'
 require_relative '../lib/router'
+require 'byebug'
 
 # Create an erroneous new dog to test the functionality of your Flash
 
@@ -52,6 +53,7 @@ class DogsController < ControllerBase
       flash[:notice] = "Saved dog successfully"
       redirect_to "/dogs"
     else
+      byebug
       flash.now[:errors] = @dog.errors
       render :new
     end

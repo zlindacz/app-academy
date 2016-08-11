@@ -2,6 +2,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'erb'
 require_relative './session'
+require_relative './flash'
 require 'active_support/inflector'
 
 class ControllerBase
@@ -26,6 +27,7 @@ class ControllerBase
     res['Location'] = url
     @already_built_response = true
     session.store_session(res)
+    flash.store_flash(res)
   end
 
   # Populate the response with content.
@@ -37,19 +39,20 @@ class ControllerBase
     @res['Content-Type'] = content_type
     @already_built_response = true
     session.store_session(res)
+    flash.store_flash(res)
   end
 
   # use ERB and binding to evaluate templates
   # pass the rendered html to render_content
   def render(template_name)
-    controller_name = self.class.to_s.underscore
+    controller_name = self.class.name.underscore
     current_path = File.dirname(__FILE__)
     path = File.join(current_path, '..', 'views', "#{controller_name}", "#{template_name}.html.erb")
-
     contents = File.read(path)
     template = ERB.new(contents).result(binding)
 
     render_content(template, 'text/html')
+
   end
 
   # method exposing a `Session` object
@@ -57,13 +60,17 @@ class ControllerBase
     @session ||= Session.new(req)
   end
 
+  def flash
+    @flash ||= Flash.new(req)
+  end
+
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
     self.send(name)
-    if [:index, :show, :new, :edit].include?(name)
-      render(name)
-    else
-      redirect_to(req.fullpath)
-    end
+    # [:index, :show, :new, :edit].include?(name)
+    render(name) unless already_built_response?
+    # else
+    #   redirect_to(req.fullpath)
+    # end
   end
 end
