@@ -1,0 +1,86 @@
+html, body, ul, li, h1, figure {
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  color: inherit;
+
+  background: transparent;
+
+}
+
+body {
+  background-color: white;
+}
+h1 {
+  font-family: 'Catamaran', sans-serif;
+  color: #a6a6f2;
+  text-align: center;
+  font-size: 60px;
+  padding-bottom: 100px;
+}
+
+.hanoi {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  height: 300px;
+}
+
+.hanoi ul {
+  height: 175px;
+  width: 150px;
+  list-style: none;
+  /*background: green;*/
+  border-bottom: 10px solid black;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+}
+
+.hanoi ul:hover {
+  cursor: pointer;
+  border-color: blue;
+}
+
+.hanoi ul li {
+  height: 50px;
+  width: 150px;
+  background: #a3a3c2;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-radius: 25px;
+}
+.hanoi ul li:first-child {
+  margin-bottom: 10px;
+}
+
+.hanoi ul li._undefined {
+  background: white;
+}
+
+.hanoi ul li._3 {
+  width: 90%
+}
+.hanoi ul li._2 {
+  width: 60%
+}
+.hanoi ul li._1 {
+  width: 35%
+}
+
+.not-won {
+  display: none;
+}
+
+.hanoi ul li.won {
+  background: green;
+}
+
+.hanoi ul.clicked {
+  border-color: red;
+}

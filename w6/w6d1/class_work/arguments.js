@@ -41,20 +41,19 @@ Function.prototype.myBind = function(context) {
   };
 };
 
-// Function.prototype.myBind = function(context, ...args) {
-//   let scope = this;
-//   return (...args2) => {
-//     scope.apply(context, args.concat(args2));
-//   };
-// };
+Function.prototype.myBind = function(context, ...args) {
+  return (...args2) => {
+    this.apply(context, args.concat(args2));
+  };
+};
 
-// markov.says("meow", "Ned");
-// markov.says.myBind(breakfast, "meow", "Kush")();
-// markov.says.myBind(breakfast)("meow", "a tree");
-// markov.says.myBind(breakfast, "meow")("Markov");
-//
-// const notMarkovSays = markov.says.myBind(breakfast);
-// notMarkovSays("meow", "me");
+markov.says("meow", "Ned");
+markov.says.myBind(breakfast, "meow", "Kush")();
+markov.says.myBind(breakfast)("meow", "a tree");
+markov.says.myBind(breakfast, "meow")("Markov");
+
+const notMarkovSays = markov.says.myBind(breakfast);
+notMarkovSays("meow", "me");
 
 function curriedSum(numArgs) {
   let numbers = [];
