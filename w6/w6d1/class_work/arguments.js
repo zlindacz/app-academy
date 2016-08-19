@@ -89,18 +89,18 @@ console.log(sum.curry(2)(3)(4));
 console.log(curriedSum.curry(3)(4)(1)(1)(2)(9));
 
 
-// Function.prototype.curry = function(numArgs) {
-//   let args = [];
-//   let scope = this;
-//   function _curriedFunc(el) {
-//     args.push(el);
-//     if (args.length === numArgs) {
-//       return scope.call(scope, ...args);
-//     } else {
-//       return _curriedFunc;
-//     }
-//   }
-//   return _curriedFunc;
-// };
+Function.prototype.curry = function(numArgs) {
+  let args = [];
+  let scope = this;
+  function _curriedFunc(el) {
+    args.push(el);
+    if (args.length === numArgs) {
+      return scope.call(scope, ...args);
+    } else {
+      return _curriedFunc;
+    }
+  }
+  return _curriedFunc;
+};
 
 // console.log(sum.curry(3)(3)(4)(2));
